@@ -46,7 +46,7 @@ The **Command Palette** Start prompts you to "Select Color Theme". Type "sas" an
 
 The color scheme is just one of the many preferences you can modify... so now you know where to find them.
 
-## Working with Git
+## Getting started with Git in VS Code
 
 Working with Git repositories in VS Code is extremely easy.
 
@@ -84,9 +84,32 @@ When prompted about opening the cloned repository, click **Open**. And when aske
 
 ![](/img/2026-03-12_14-20-19.png)
 
-You should now see your cloned repository folder in **Explorer**:
+You should now see your cloned repository folder in the **Explorer** view:
 
-![](images/franir_2025-03-19-09-54-27.png)
+![](/img/2026-03-12_14-28-50.png)
+
+### &#x1F6A9; Status Check
+
+We've cloned a project to work with in VS Code. By cloning the project, we have placed a copy of the repo on our own PC here. Because it's our own copy, then we can view files, make changes, or do anything else we want with it.
+
+
+## Getting started with Git in SAS Programming
+
+SAS provides programming language features to work with Git repositories, too.
+
+So now let's clone the same GitHub repository on to the SAS server in our Kubernetes environment.
+
+
+
+
+
+
+
+
+---
+---
+---
+
 
 ## Working with data
 
@@ -94,35 +117,31 @@ You should now see your cloned repository folder in **Explorer**:
 
 In the cloned repository, explore the **Data** folder. It contains various data sets for our project in various formats:
 
-![](images/franir_2025-03-19-10-42-52.png)
+![](/img/2026-03-12_14-43-05.png)
 
-- Customer churn provides metrics about customer activity over the last few months,
-- Customers describes customers’ attributes, such as their estimated income, homeowner status and birth date,
-- Reviews lists customer reviews on recent purchases,
-- Subscriptions provides meaningful details about the customer’s subscriptions,
-- And technical support evaluations gives the customers’ feedback on recent interactions with Technical Support.
+- **Customer churn** is a parquet table that provides metrics about customer activity over the last few months,
+- **Customers** is a SAS data set that describes customers’ attributes, such as their estimated income, homeowner status and birth date,
+- **Reviews** is a JSON file that lists customer reviews on recent purchases,
+- **Subscriptions** is a comma-separated values text file that provides meaningful details about the customer’s subscriptions,
+- And **technical support evaluations** is another SAS data set that gives the customers’ feedback on recent interactions with Technical Support.
 
 In this hands-on, we will focus on the data preparation part of the project.
 
-We have two SAS data sets, one CSV file, one JSON file and one Parquet data set.
+Even with our data spread across two SAS data sets, one CSV file, one JSON file, and one Parquet table, SAS makes it easy to bring them together.
 
-Let's see how we can integrate those data files.
-
-*Note: Storing data in a Git repository is generally not recommended. While Git excels at version control and collaboration on text-based files like source code, it is not optimized for handling large datasets or binary files. In this hands-on example, we stored sample data in Git for simplicity.*
+> *Note: Storing data in a Git repository is generally not recommended. While Git excels at version control and collaboration on text-based files like source code, it is not optimized for handling large datasets or binary files. In this hands-on example, we stored sample data in Git for simplicity in this workshop.*
 
 ### Reading SAS data sets
 
-To read SAS data sets, we just need a SAS library.
+To read SAS data sets, we just need a SAS library. To create a SAS library, let's run some simple SAS code.
 
-Create a new SAS file by selecting the VS Code Menu > **File** > **New File...**:
+Start off by creating a new SAS program file: **File** > **New File...**. 
 
-![](images/franir_2025-03-19-10-52-04.png)
-
-Select **SAS File**:
+The Command Palette appears prompting you for the file's type and name. Select **SAS File**:
 
 ![](images/franir_2025-03-19-10-52-53.png)
 
-In the new SAS file, copy the following code:
+In the new *Untitled* SAS program file, copy the following code:
 
 ```sas
 libname churn "" ;
