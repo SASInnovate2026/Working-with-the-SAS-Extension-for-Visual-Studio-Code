@@ -68,9 +68,9 @@ Start typing "Git C" and select **Git: Clone**:
 
 Paste the following URL for this workshop's GitHub repository and press Enter to **Clone from URL**:
 
-```https://github.com/SASInnovate2026/Working-with-the-SAS-Extension-for-Visual-Studio-Code.git```
+`https://github.com/SASInnovate2026/Working-with-the-SAS-Extension-for-Visual-Studio-Code.git`
 
-> &#x26A0; Attention: Do not select **Clone from GitHub** as that uses a different technique requiring a user's authentication credentials.
+> &#x26A0; *Attention: Do not select **Clone from GitHub** as that uses a different technique requiring a user's authentication credentials.*
 >
 > ![](img/2026-03-12_14-00-10.png)
 
@@ -92,32 +92,53 @@ You should now see your cloned repository folder in the **Explorer** view:
 
 We've cloned a project to work with in VS Code. By cloning the project, we have placed a copy of the repo on our own PC here. Because it's our own copy, then we can view files, make changes, or do anything else we want with it.
 
-
 ## Getting started with Git in SAS Programming
 
 SAS provides programming language features to work with Git repositories, too.
 
 So now let's clone the same GitHub repository on to the SAS server in our Kubernetes environment.
 
+In the cloned repository, explore the **Programs** folder. It contains SAS programs we'll use for this workshop.
 
+![](/img/2026-03-13_09-50-44.png)
 
+Click on the "git_checkout.sas" program. That will open the file in the main work area. We don't need to edit it here - it's already set up for this workshop. We just want to run it.
 
+Find the "running man" icon at the top-right of the editor pane...
 
+![](/img/2026-03-13_09-52-52.png)
 
+...and click it to submit the job to run in a SAS Compute Server on the Kubernetes cluster.
 
+If this is the very first action attempting to communicate with the SAS Compute Server, then you should briefly see a "Connecting" panel appear at the bottom right of the window:
 
----
----
----
+![](/img/2026-03-13_09-55-41.png)
 
+Followed by a message about running the SAS program code. That should complete in just a few seconds. And then you're presented with the SAS Log Output in a new pane that appears at the bottom of the work area:
+
+![](/img/2026-03-13_09-59-25.png)
+
+You might want to scroll up to see the complete log, but as shown here we do see the message, "NOTE: Fetch succesful!".
+
+Now let's confirm everything landed as expected. Look over at the Activity Bar and click the SAS icon to open the SAS Extension for VS Code:
+
+![](/img/2026-03-13_10-21-38.png)
+
+In the middle of the SAS pane, look at **SAS SERVER**. The folder structure is probably collapsed, so click to expand SAS Server > Home > Workshop and confirm **_VSCODE_DEMO** is there. That's where this workshop's repository from GitHub was cloned to.
+
+Close the "git_checkout.sas" program editor - we don't need it anymore.
+
+### &#x1F6A9; Status Check
+
+We've cloned the project a second time, this time to place the files in a location that is directly accessible to the SAS Compute Server in Kubernetes.
 
 ## Working with data
 
 ​As a data scientist at an online personal styling service, you’ll use machine learning models to help us analyze customer churn. Customer “churn” simply means that our client has canceled their premium clothing subscription. And since it often is more difficult to find a new customer than keep an existing one, you will help us identify which clients are likely on the cusp of churning, so that we can find ways to retain them.​
 
-In the cloned repository, explore the **Data** folder. It contains various data sets for our project in various formats:
+In the cloned repository on the SAS server, explore the **Data** folder. It contains various data sets for our project in various formats:
 
-![](/img/2026-03-12_14-43-05.png)
+![](/img/2026-03-13_10-29-52.png)
 
 - **Customer churn** is a parquet table that provides metrics about customer activity over the last few months,
 - **Customers** is a SAS data set that describes customers’ attributes, such as their estimated income, homeowner status and birth date,
@@ -129,9 +150,9 @@ In this hands-on, we will focus on the data preparation part of the project.
 
 Even with our data spread across two SAS data sets, one CSV file, one JSON file, and one Parquet table, SAS makes it easy to bring them together.
 
-> *Note: Storing data in a Git repository is generally not recommended. While Git excels at version control and collaboration on text-based files like source code, it is not optimized for handling large datasets or binary files. In this hands-on example, we stored sample data in Git for simplicity in this workshop.*
+> *Note: Storing data in a Git repository is generally not recommended. While Git excels at version control and collaboration on text-based files like source code, it is not optimized for handling large datasets or binary files. In this hands-on example, we provide sample data in Git for simplicity.*
 
-### Reading SAS data sets
+### Reading a SAS data set
 
 To read SAS data sets, we just need a SAS library. To create a SAS library, let's run some simple SAS code.
 
@@ -144,124 +165,133 @@ The Command Palette appears prompting you for the file's type and name. Select *
 In the new *Untitled* SAS program file, copy the following code:
 
 ```sas
+/* Churn demo - SAS data */
 libname churn "" ;
 ```
 
 In the Explorer, select the **Data** folder, right-click and select **Copy Path**:
 
-![](images/franir_2025-03-19-10-57-33.png)
+![](img/2026-03-13_10-34-57.png)
 
 Paste the copied path between the double-quotes in your code.
 
 This should look like the following:
 
 ```sas
-libname churn "/workspaces/myfolder/SAS-Viya-Workbench-and-VS-Code/Data" ;
+/* Churn demo - SAS data */
+libname churn "/workshop/_VSCODE_DEMO/Data" ;
 ```
 
 You're ready to submit this code using the Run button:
 
-![](images/franir_2025-03-19-11-05-21.png)
+![](img/2026-03-13_10-36-45.png)
 
-A new pane should have popped up showing the SAS log for this code submission. You're like in the good old SAS Display Manager!
+Again, the SAS log from running the submitted code will appear in the Output pane at the bottom of the work area. Confirm it worked as expected by finding the message, "**NOTE: Libref CHURN was successfully assigned**".
 
-![](images/franir_2025-03-19-11-08-05.png)
+Now, look at the bottom of the SAS pane for the **LIBRARIES** section.There you should now see the **CHURN** library has been added and you can click to open a preview of the **CUSTOMERS** table.
 
-Now, go to the SAS activity (extension) to view your SAS libraries.
+![](/img/2026-03-13_10-43-01.png)
 
-You should see the CHURN library and can open the CUSTOMERS table:
+### Reading a Parquet dataset
 
-![](images/franir_2025-03-19-11-12-42.png)
+A SAS library reference consists of two primary elements: 1) the path to location on disk, and 2) the library engine.
 
-### Reading Parquet data
+We will access the Parquet dataset using a SAS library and specifying the "parquet" library engine. The Parquet file is at the exact same location as the SAS data sets. But we need a new library reference so that we can specify a different library engine that is able to work data in Parquet format.
 
-We will access the Parquet data set using a SAS library. The Parquet file is at the exact same location as the SAS data sets. We will just use a different library engine.
+> *Note: Parquet is a **columnar storage file format** optimized for efficient data storage and retrieval. It is commonly used in big data processing frameworks like Apache Spark and Hadoop due to its ability to handle large datasets with high performance and reduced storage requirements.*
 
-*Note: Parquet is a **columnar storage file format** optimized for efficient data storage and retrieval. It is commonly used in big data processing frameworks like Apache Spark and Hadoop due to its ability to handle large datasets with high performance and reduced storage requirements.*
-
-Back in your SAS file, duplicate the libname statement.
-
-Change the library name to ```churn_pq``` for churn parquet.
-
-Add the ```parquet``` engine between the library name and the path. 
-
-You should have something similar to this:
+Back in your SAS program file, add a new libname statement to access the Parquet dataset similar to:
 
 ```sas
-libname churn_pq parquet "/workspaces/myfolder/SAS-Viya-Workbench-and-VS-Code/Data" ;
+/* Churn demo - Parquet data */
+libname churn_pq parquet "/workshop/_VSCODE_DEMO/Data" ;
 ```
 
-Run this line of code.
+Submit the code to run on the SAS Compute Server.
 
-Check the log:
+> &#x1FA84; *Pro-tip: if you select/highlight the desired code in the SAS program, then when you hit the Submit (running man) button, only that selected code will run.*
 
-![](images/franir_2025-03-19-11-23-45.png)
+Confirm the SAS log shows success:
 
-And go to the SAS libraries to see if you can view the Parquet data set:
+```log
+NOTE: Libref CHURN_PQ was successfully assigned as follows:
+      Engine:        PARQUET
+      Physical Name: /workshop/_VSCODE_DEMO/Data
+```
 
-Indeed, you normally can:
-
-![](images/franir_2025-03-19-11-25-19.png)
+And as before, look for **CHURN_PQ** in the **LIBRARIES** section of the SAS pane. Click on the **customer_churn** dataset to see a preview in the work area.
 
 ### Reading a CSV file
 
-To read a CSV file, we will need to import it into a SAS data set.
+SAS doesn't offer a library engine to read simple CSV files. Instead, we can import the content of the file into a SAS data set.
 
-In your SAS file, add the following code:
+In your SAS program file, add the following code:
 
 ```sas
-proc import file="" out=subscriptions dbms=csv replace ;
+/* Churn data - import CSV */
+proc import file="/workshop/_VSCODE_DEMO/Data/subscriptions.csv" out=subscriptions dbms=csv replace ;
 run ;
 ```
 
-Copy the path to the ```subscriptions.csv``` file (right-click on the file > **Copy Path**) and insert it between the double-quotes.
+Submit this code to run. Notice that we did not provide a destination libref, so the resulting SAS data set will automatically write out to the **WORK** library.
 
-This should look like the following:
+Near the bottom of the SAS log, look for success similar to:
 
-```sas
-proc import file="/workspaces/myfolder/SAS-Viya-Workbench-and-VS-Code/Data/subscriptions.csv" out=subscriptions dbms=csv replace ;
-run ;
+```log
+NOTE: WORK.SUBSCRIPTIONS data set was successfully created.
+NOTE: The data set WORK.SUBSCRIPTIONS has 3 observations and 2 variables.
+NOTE: PROCEDURE IMPORT used (Total process time):
+      real time           0.05 seconds
+      cpu time            0.05 seconds
 ```
 
-Run this SAS procedure, check the log and view the resulting data in the WORK library:
+And as before, look for **WORK** in the **LIBRARIES** section of the SAS pane. Click on the **SUBSCRIPTIONS** data set to see a preview in VS Code's work area.
 
-![](images/franir_2025-03-19-11-59-01.png)
+![](/img/2026-03-13_11-20-53.png)
 
 ### Reading a JSON file
 
-To read a JSON file, we will also use a special library engine.
+A JSON (JavaScript Object Notation) file is a lightweight, text-based format used to store and transport data. Data is organized into a hierarchy of key-value pairs and arrays that is designed to be easy for humans to read and simple for machines to parse.
 
-In your SAS file, add the following code:
+We will access the reviews.json file using a SAS library and specifying the "json" library engine.
+
+In your SAS program file, add the following code:
 
 ```sas
-libname rev json "" ;
+/* Churn demo - JSON Data */
+libname rev json "/workshop/_VSCODE_DEMO/Data/reviews.json" ;
 proc datasets lib=rev ;
 quit ;
 ```
 
-Copy the path to the ```reviews.json``` file (right-click on the file > **Copy Path**) and insert it between the double-quotes.
+> *Note that a JSON-type of SAS library specifies the path to the JSON file, not to the folder.*
 
-This should look like the following:
+Submit the code to run in the SAS Compute Server.
 
-```sas
-libname rev json "/workspaces/myfolder/SAS-Viya-Workbench-and-VS-Code/Data/reviews.json" ;
-proc datasets lib=rev ;
-quit ;
+The DATASETS procedure generates ODS output with a report that lists the logical tables stored in the JSON file. This is presented in a new "Result" tab to the right of your SAS program code:
+
+![](img/2026-03-13_11-41-23.png)
+
+Also be sure to confirm success in the SAS log, look for:
+
+```log
+NOTE: JSON data is only read once.  To read the JSON again, reassign the JSON LIBNAME.
+NOTE: Libref REV was successfully assigned as follows:
+      Engine:        JSON
+      Physical Name: /workshop/_VSCODE_DEMO/Data/reviews.json
+
+
+19   proc datasets lib=rev ;
+20   quit ;
+
+NOTE: PROCEDURE DATASETS used (Total process time):
+      real time           0.02 seconds
+      cpu time            0.02 seconds
 ```
 
-Run the code.
+Finally, look in the **LIBRARIES** section of the SAS pane to find and open the resulting **REVIEWS** table in the new **REV** library.
 
-The DATASETS procedure generates some output and should list the logical tables stored in the JSON file.
-
-So, you should see now a **Results** pane popping up:
-
-![](images/franir_2025-03-19-15-12-53.png)
-
-Here we go. We have our three SAS pillars in VS Code: editor, log and output.
-
-Check the log.
-
-Open the resulting REVIEWS table in the REV library.
+> &#x1F4A1; *If you're an experienced SAS programmer acquainted with either SAS Display Manager or SAS Studio, then you should be in familiar territory here, recognizing the **SAS Program Editor**, **SAS Log**, and **SAS Output** windows now on display.*
 
 ## Accessing other data
 
