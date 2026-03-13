@@ -293,53 +293,61 @@ Finally, look in the **LIBRARIES** section of the SAS pane to find and open the 
 
 > &#x1F4A1; *If you're an experienced SAS programmer acquainted with either SAS Display Manager or SAS Studio, then you should be in familiar territory here, recognizing the **SAS Program Editor**, **SAS Log**, and **SAS Output** windows now on display.*
 
-## Accessing other data
+### Save your SAS program code
 
-Of course, you're not limited to accessing data solely within a workbench.
+The **Explorer** icon in the Activity Bar should have a blue badge with the number 1 to indicate that the SAS program file you've been working with needs to be saved.
 
-With SAS, Python, and soon R, you can access various file formats from multiple locations, including databases, cloud object storage, URLs, web services, REST APIs, and more.
+![](/img/2026-03-13_13-04-08.png)
 
-Additionally, you can upload data to your workbench directly from your laptop:
+Select your SAS program file's tab in VS Code's work area. Then click File > Save As... and you should see a file explorer window appear to specify where to save your program.
 
-![](images/franir_2025-03-20-17-17-22.png)
+You can select anywhere on the PC, of course, but we have a location in mind. Name your program `data_access.sas` and save it to: 
 
-## Interacting with Git and GitHub
+`C:\Users\student\Working-with-the-SAS-Extension-for-Visual-Studio-Code\Programs`.
 
-Save the SAS program by selecting VS Code Menu > **File** > **Save** and save it in your cloned repository under Programs.
+After saving your SAS program file, the blue notification badge on the **Explorer** icon will disappear. But now a new one has appeared on the **Source Control** icon in the Activity Bar:
 
-Navigate to ```/workspaces/myfolder/SAS-Viya-Workbench-and-VS-Code/Programs``` and name it ```data_access.sas```:
+![](/img/2026-03-13_13-02-56.png)
 
-![](images/franir_2025-03-19-15-27-24.png)
+Let's deal with that briefly next.
 
-Click **OK**.
+## Working with Source Control in VS Code
 
-You should notice that VS Code has detected a change in your cloned repository. Indeed, your **Source Control** activity should have a badge with at least one pending change:
+Source control (a.k.a., source code management, a.k.a., version control) is the practice of tracking and controlling changes to files over time. There are lots of variations and tools. Git in particular is very popular and commonly used.
 
-![](images/franir_2025-03-19-15-36-31.png)
+When you saved your SAS program file to the Programs folder in the repo location we cloned from Github, the local Git service noticed the change - and placed that new blue badge on the **Source Control** icon in VS Code's Activity Bar. That's a prompt for you to take the next steps: stage, then commit the change.
 
-Open the **Source Control** activity and observe that the new SAS program that you created is listed as a pending change in the local cloned repository:
+Your file is safely saved to disk, but it's not yet being formally tracked by Git for version control. Open up the **Source Control** section:
 
-![](images/franir_2025-03-19-15-40-25.png)
+![](img/2026-03-13_13-18-22.png)
 
-You can go ahead and commit the change in the local cloned repository.
+It currently shows your new `data_access.sas` program file under the list of **Changes** it noticed. We can *stage* that change in preparation for *commit* by clicking that `+` icon to the right of the file's name.
 
-Click the **Stage All Changes** button:
+A new section named **Staged Changes** with your file will appear there above the Changes section.
 
-![](images/franir_2025-03-19-15-44-46.png)
+> *Staging simply allows us to group one or more files together in preparation for commit.*
 
-*Note: Clicking either of the + buttons will have the same effect, as there is only one change.*
+Enter a descriptive commit message in the field provided - like, "my nifty SAS program" - and click the Commit button.
 
-Add a commit message and click **Commit**:
+![](img/2026-03-13_13-28-06.png)
 
-![](images/franir_2025-03-19-15-47-00.png)
+That updates the local Git repo so it can track this change - adding your new SAS program file to the project.
 
-All right. There's a few additional configuration steps needed to be able to commit to a git repository. Click **Cancel**:
+Or, it would - if we had initialized Git properly. &#x1F61C;
 
-![](images/franir_2025-03-19-15-55-19.png)
+![](img/2026-03-13_13-32-30.png)
 
-We'll stop here but you get the idea.
+We'll stop here as we're just making the point about VS Code's support for Git as a source code management utility.
 
-Once you commit a change locally, you'd have to push the changes to the remote repository, GitHub here, which would require to be authenticated against GitHub.
+### Bonus
+
+Assuming the commit above had worked, that just updates the *local* git repo on your PC. If you wanted to push that change up to the *remote* repo hosted in GitHub.com (or wherever), then VS Code can do that, too.
+
+But...
+
+That requires establishing authentication credentials with the remote repo (in GitHub). And since you're not one of the maintaining authors of this particular project, you don't have the means to authenticate and push updates there. Makes sense, right? If it was your repo, you wouldn't want unknown, random folks on the Internet modifying your hard work.
+
+You can, however, create your own GitHub (or wherever) repo that you own and configure your local Git to use that as its "origin". Then, you could push the changes up to a location under your control where you are authenticated.
 
 ## Working with SAS notebooks
 
