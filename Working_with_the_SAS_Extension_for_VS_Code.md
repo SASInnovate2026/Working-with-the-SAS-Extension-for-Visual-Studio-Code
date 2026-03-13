@@ -4,6 +4,36 @@ This hands on workshop demonstrates the **[SAS Extension for Microsoft Visual St
 
 By enabling SAS programming development in VS Code, you will have a fully integrated development environment that supports your SAS analytic workflows.
 
+- [Working with the SAS Extension for Visual Studio Code](#working-with-the-sas-extension-for-visual-studio-code)
+    - [Open Visual Studio Code](#open-visual-studio-code)
+    - [Working in Visual Studio Code](#working-in-visual-studio-code)
+    - [Customizing VS Code](#customizing-vs-code)
+    - [Getting started with Git in VS Code](#getting-started-with-git-in-vs-code)
+        - [🚩 Status Check](#-status-check)
+    - [Getting started with Git in SAS Programming](#getting-started-with-git-in-sas-programming)
+        - [🚩 Status Check](#-status-check-1)
+    - [Working with data](#working-with-data)
+        - [Reading a SAS data set](#reading-a-sas-data-set)
+        - [Reading a Parquet dataset](#reading-a-parquet-dataset)
+        - [Reading a CSV file](#reading-a-csv-file)
+        - [Reading a JSON file](#reading-a-json-file)
+        - [🚩 Status Check](#-status-check-2)
+        - [Save your SAS program code](#save-your-sas-program-code)
+    - [Working with Source Control in VS Code](#working-with-source-control-in-vs-code)
+        - [Bonus](#bonus)
+        - [🚩 Status Check](#-status-check-3)
+    - [Working with SAS Notebooks](#working-with-sas-notebooks)
+        - [Save your SAS Notebook](#save-your-sas-notebook)
+        - [🚩 Status Check](#-status-check-4)
+- [Pick up here](#pick-up-here)
+    - [Working with Python](#working-with-python)
+    - [Closing Visual Studio Code](#closing-visual-studio-code)
+    - [Adjusting computing resources](#adjusting-computing-resources)
+    - [Going further](#going-further)
+        - [Modern Data Science with SAS Viya Workbench and Python](#modern-data-science-with-sas-viya-workbench-and-python)
+        - [SAS Extension for Visual Studio Code](#sas-extension-for-visual-studio-code)
+
+
 ## Open Visual Studio Code
 
 In this hands-on environment, you should be logged into a virtual machine and see the Windows desktop. Find the Visual Studio Code icon on the left side of your screen:
@@ -293,15 +323,19 @@ Finally, look in the **LIBRARIES** section of the SAS pane to find and open the 
 
 > &#x1F4A1; *If you're an experienced SAS programmer acquainted with either SAS Display Manager or SAS Studio, then you should be in familiar territory here, recognizing the **SAS Program Editor**, **SAS Log**, and **SAS Output** windows now on display.*
 
+### &#x1F6A9; Status Check
+
+You have demonstrated several techniques to ingest data in different formats into the SAS Compute Server for analytics processing.
+
 ### Save your SAS program code
 
 The **Explorer** icon in the Activity Bar should have a blue badge with the number 1 to indicate that the SAS program file you've been working with needs to be saved.
 
 ![](/img/2026-03-13_13-04-08.png)
 
-Select your SAS program file's tab in VS Code's work area. Then click File > Save As... and you should see a file explorer window appear to specify where to save your program.
+Select your SAS program file's tab in VS Code's work area. Then click **File** > **Save As...** and you should see a file explorer window appear to specify where to save your program.
 
-You can select anywhere on the PC, of course, but we have a location in mind. Name your program `data_access.sas` and save it to: 
+You can select anywhere on the PC, of course, but we have a location in mind. Name your program `data_access.sas` and save it to:
 
 `C:\Users\student\Working-with-the-SAS-Extension-for-Visual-Studio-Code\Programs`.
 
@@ -349,30 +383,38 @@ That requires establishing authentication credentials with the remote repo (in G
 
 You can, however, create your own GitHub (or wherever) repo that you own and configure your local Git to use that as its "origin". Then, you could push the changes up to a location under your control where you are authenticated.
 
-## Working with SAS notebooks
+### &#x1F6A9; Status Check
 
-One of the nicest features of SAS integration in VS Studio Code is the ability to create notebooks.
+As your SAS program code evolves over time, it can be really helpful to track what changes were made, who made them and when, along with commit messages to help find key updates.
 
-A SAS notebook is similar to a Jupyter notebook. It allows you to combine text and SAS instructions and therefore document your actions in a nice-looking way.
+## Working with SAS Notebooks
 
-Create a new file by selecting the VS Code Menu > **File** > **New File...**.
+Python (and other languages) programmers have long enjoyed working with Jupyter Notebooks. A Jupyter Notebook is a page that can be authored with two main types of input:
 
-Select **SAS Notebook**:
+-   **Code (or Execute) cells**: Where you write and execute live code. The output appears directly below the cell.
+
+-   **Markdown Cells**: Where you write formatted text, insert images, or otherwise provide descriptive information about the code and process.
+
+The SAS Extension for VS Code offers similar functionality known as **SAS Notebooks**.
+
+In a SAS Notebook, we can mix:
+
+- Markdown, a lightweight markup language that uses plain text formatting syntaxfor easy conversion to HTML or other formats,
+- SAS code,
+- SQL code,
+- and Python.
+
+Create a new file by selecting the VS Code Menu > **File** > **New File...** and in the Command Palette prompt, select **SAS Notebook**:
 
 ![](images/franir_2025-03-19-16-09-46.png)
 
-In a SAS notebook, we can mix:
-
-- Markdown, a lightweight markup language used to format text with plain syntax for easy conversion to HTML or other formats,
-- SAS code,
-- SQL code,
-- and soon Python.
-
-In your opened SAS notebook, change the first cell language to Markdown:
+By default, the new notebook has one empty cell that is for SAS code. Let's change that:
 
 ![](images/franir_2025-03-20-09-52-41.png)
 
-In the Markdown cell, paste the following code:
+On the far right bottom of that empty cell is its type - currently, that's "SAS". Click on the word **SAS** there and in the Command Palette prompt, select **Markdown** as the language mode for that cell.
+
+Let's create some text headers for this new notebook - in the Markdown field, enter:
 
 ```markdown
 # Discover data
@@ -380,19 +422,19 @@ In the Markdown cell, paste the following code:
 ## Customers
 ```
 
-Validate the code by clicking on the check box:
+To see what's described by the Markdown so far, try clicking on the checkmark &check; icon at the top right of the field:
 
 ![](images/franir_2025-03-20-09-56-16.png)
 
-You should see this:
+You're shown a preview of the rendered output. Those hashtags # are how section headers are identified in markdown syntax.
 
 ![](images/franir_2025-03-20-09-56-55.png)
 
-Add a code cell by clicking on **+ Code**:
+Add a code cell by clicking on **+ Code** at the top of the notebook:
 
 ![](images/franir_2025-03-20-09-58-18.png)
 
-Check that it is a SAS cell:
+Confirm that it is a SAS cell:
 
 ![](images/franir_2025-03-20-09-59-05.png)
 
@@ -416,7 +458,7 @@ Add a new Markdown cell at the bottom of your output:
 
 ![](images/franir_2025-03-20-10-12-04.png)
 
-Paste the following code:
+Add the following header text:
 
 ```markdown
 ## Churn
@@ -438,13 +480,14 @@ Run the cell.
 
 ![](images/franir_2025-03-20-10-18-39.png)
 
-Add a new Markdown cell with the following level-2 title (two # signs): "**Build some distribution reports**".
+Add a new Markdown cell with the following level-2 header (i.e., with two hashtags ##): "**Build some distribution reports**".
 
 Validate/submit markdown.
 
 Add a SAS code cell, paste and run the frequency report and plot code:
 
 ```sas
+/* Frequency report */
 proc freq data=churn_pq.customer_churn ;
    tables lostcustomer / plots=freqplot() ;
 run ;
@@ -468,13 +511,13 @@ Then select **SAS Log Renderer**:
 
 You should see the SAS log now.
 
-Add a new Markdown cell with the following level-1 title (one # sign): "**Join data**".
+Add a new Markdown cell with the following level-1 header (i.e., one hashtag #): "**Join data**".
 
 Add a SQL code cell (the label is mistakenly marked as '**MS SQL**' when it should actually be '**SAS SQL**').
 
 ![](images/franir_2025-03-20-11-06-44.png)
 
-This SQL cell allows you to code directly a SAS SQL statement without having to specify ```proc sql``` and ```quit```.
+This SQL cell allows you to code directly a SAS SQL statement without having to specify `PROC SQL` and `quit;`.
 
 Use the following code to join all five tables:
 
@@ -488,55 +531,63 @@ create table churn_wip (drop=custId customerSubscrCode reviewId ordinal_root ord
       left join rev.reviews as rev on churn.reviewId=rev.reviewId
 ```
 
-Run the code and check the log.
+Run the code and review the log output that's returned.
 
-Check the table in the WORK library in the SAS extension.
+Select the **SAS** icon in the Activity Bar, look in the **LIBRARIES** section to find the **WORK** library. Check the contents of the **CHURN_WIP** data set.
+
+> *If you don't see CHURN_WIP in the WORK library, mouse-over the **LIBRARIES** section and click the refresh &#x21BB; icon to update the list.*
 
 ![](images/franir_2025-03-20-13-53-39.png)
 
 Finally, let's save the final table as a Parquet data set.
 
-Add a new Markdown cell with the following level-1 title (one # sign): "**Save final table in Parquet format**".
+Add a new Markdown cell with the following level-1 header (i.e., one hashtag #): "**Save final table in Parquet format**".
 
-Add a SAS code cell and paste the following code to save the table as a Parquet file while adding a computed variable:
+Add a SAS code cell. Paste the following code that adds a computed variable "customerAge" and saves the dataset to a Parquet file named **churn_abt.parquet**:
 
 ```sas
+/* Save data as Parquet dataset */
 data churn_pq.churn_abt ;
    set churn_wip ;
    customerAge=intck('YEAR',birthDate,today(),'C') ;
 run ;
 ```
 
-Run the code and check the result:
+Run the code, review the log output that's returned, and look for **churn_abt** in the **CHURN_PQ** library:
 
 ![](images/franir_2025-03-20-13-57-51.png)
 
-Now, we will check at the file system level how this worked.
+View the table and confirm the new computed column "customerAge" exists (scroll all the way to the right).
 
-Open a new terminal by selecting the VS Code Menu > **Terminal** > **New Terminal**.
+### Save your SAS Notebook
 
-![](images/franir_2025-03-20-13-59-43.png)
+Select your SAS Notebook's tab in VS Code's work area. Then click **File** > **Save As...** and you should see a file explorer window appear to specify where to save your program.
 
-In the terminal, type the following commands:
+You can select anywhere on the PC, of course, but we have a location in mind. Name your program `my_sas_notebook.sasnb` and save it to:
 
-```shell
-cd SAS-Viya-Workbench-and-VS-Code/Data/
-ls -ltr
-```
+`C:\Users\student\Working-with-the-SAS-Extension-for-Visual-Studio-Code\Programs`.
 
-You should see the new Parquet file created on disk:
+### &#x1F6A9; Status Check
 
-![](images/franir_2025-03-20-14-04-57.png)
+You have brought together several components of the data science programming lifecycle using VS Code to author and submit SAS programs, create and examine data in different formats, and generated a SAS Notebook as a document that shows it all working together.
 
-Save the SAS notebook by selecting VS Code Menu > **File** > **Save** and save it in your cloned repository under Programs.
+---
+---
+---
+
+# Pick up here
+
+Requested Adam place Python on the Win host in the next build. See 13-MAR email for steps to implement in the meantime.
+
+---
+---
+---
 
 ## Working with Python
 
-Your workbench computing environment is not dedicated to simply running SAS code.
+You're not limited to only run SAS code. Python is the *lingua fraca* for programmers, data scientists, and modelers.
 
-It also lets developers, data scientists and modelers code in Python (with R support coming soon) through Visual Studio Code or other Jupyter UIs.
-
-In Explorer, navigate to ```SAS-Viya-Workbench-and-VS-Code/Programs``` and open ```python_sample_data_access.ipynb```:
+Switch to the **Explorer** pane and navigate to ```SAS-Viya-Workbench-and-VS-Code/Programs``` to open ```python_sample_data_access.ipynb```:
 
 ![](images/franir_2025-03-20-15-08-34.png)
 
