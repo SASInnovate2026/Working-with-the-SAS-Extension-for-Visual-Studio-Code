@@ -9,30 +9,14 @@ By enabling SAS programming development in VS Code, you will have a fully integr
     - [Working in Visual Studio Code](#working-in-visual-studio-code)
     - [Customizing VS Code](#customizing-vs-code)
     - [Getting started with Git in VS Code](#getting-started-with-git-in-vs-code)
-        - [🚩 Status Check](#-status-check)
     - [Getting started with Git in SAS Programming](#getting-started-with-git-in-sas-programming)
-        - [🚩 Status Check](#-status-check-1)
     - [Working with data](#working-with-data)
-        - [Reading a SAS data set](#reading-a-sas-data-set)
-        - [Reading a Parquet dataset](#reading-a-parquet-dataset)
-        - [Reading a CSV file](#reading-a-csv-file)
-        - [Reading a JSON file](#reading-a-json-file)
-        - [🚩 Status Check](#-status-check-2)
-        - [Save your SAS program code](#save-your-sas-program-code)
     - [Working with Source Control in VS Code](#working-with-source-control-in-vs-code)
-        - [Bonus](#bonus)
-        - [🚩 Status Check](#-status-check-3)
     - [Working with SAS Notebooks](#working-with-sas-notebooks)
-        - [Save your SAS Notebook](#save-your-sas-notebook)
-        - [🚩 Status Check](#-status-check-4)
-- [Pick up here](#pick-up-here)
     - [Working with Python](#working-with-python)
-    - [Closing Visual Studio Code](#closing-visual-studio-code)
-    - [Adjusting computing resources](#adjusting-computing-resources)
+    - [Set up your own connection profile](#set-up-your-own-connection-profile)
+    - [All done!](#all-done)
     - [Going further](#going-further)
-        - [Modern Data Science with SAS Viya Workbench and Python](#modern-data-science-with-sas-viya-workbench-and-python)
-        - [SAS Extension for Visual Studio Code](#sas-extension-for-visual-studio-code)
-
 
 ## Open Visual Studio Code
 
@@ -44,7 +28,7 @@ Double-click to open it.
 
 ## Working in Visual Studio Code
 
-**Visual Studio Code** (**VS Code**) is a free, open-source code editor developed by Microsoft that supports various programming languages and offers features like debugging, syntax highlighting, and version control.
+**Microsoft Visual Studio Code** (**VS Code**) is a free, open-source code editor that supports various programming languages and offers features like debugging, syntax highlighting, and version control.
 
 If you are not familiar with VS Code, take the time to explore the user interface.
 
@@ -571,18 +555,6 @@ You can select anywhere on the PC, of course, but we have a location in mind. Na
 
 You have brought together several components of the data science programming lifecycle using VS Code to author and submit SAS programs, create and examine data in different formats, and generated a SAS Notebook as a document that shows it all working together.
 
----
----
----
-
-# Pick up here
-
-Requested Adam place Python on the Win host in the next build. See 13-MAR email for steps to implement in the meantime.
-
----
----
----
-
 ## Working with Python
 
 You're not limited to only run SAS code. Python is the *lingua fraca* for programmers, data scientists, and modelers.
@@ -591,43 +563,110 @@ Switch to the **Explorer** pane and navigate to ```SAS-Viya-Workbench-and-VS-Cod
 
 ![](images/franir_2025-03-20-15-08-34.png)
 
-It's a simple Python notebook that demonstrates how to access the same data files as you would with SAS.
+This is an **Interactive Python Notebook** that shows using Python code to open the different types of data as we did above with SAS.
 
 Run the notebook by selecting **Run All**:
 
 ![](images/franir_2025-03-20-15-12-50.png)
 
-A **Select Kernel** dialog should pop up. Select **Python Environments...**:
-
-![](images/franir_2025-03-20-15-24-17.png)
-
-Select the recommended one:
-
-![](images/franir_2025-03-20-15-25-08.png)
-
-You should see some sample data:
+After each code cell has completed running, you should see sample data returned for review:
 
 ![](images/franir_2025-03-20-15-26-34.png)
 
-## Closing Visual Studio Code
+### &#x1F6A9; Status Check
 
-Simply close your VS Code browser tab.
+Some sites need to share data to work between users who have existing skillsets and workflows. The SAS Extension for VS Code allows you to integrate SAS capabilities with other programming techniques.
 
-## Adjusting computing resources
+## Set up your own connection profile
 
-If you need to experiment with different requirements and require more computing resources, you can adjust your workbench's settings.
+We jumped right into this workshop with a **connection profile** that identifies us to SAS Viya as the user named `student`. Now, let's create a new profile to identify as a different user.
 
-On the SAS Viya Workbench welcome page, open the settings of your existing workbench:
+Press **Ctrl+Shift+P** to bring up the **Command Palette** and type the first few letters for `SAS: Add New Connection Profile`:
 
-![](images/franir_2025-03-20-16-59-34.png)
+![](/img/2026-03-16_11-41-08.png)
 
-You will see the **Workbench settings** page, where you can change the allocated computing resources according to your site's administration policies.
+Hit Enter to select it from the list.
 
-![](images/franir_2025-03-20-17-05-49.png)
+The first prompt is to name the new connection profile - we'll go with "**Lynn on SAS Viya**", but of course, it could be anything descriptive that works for you:
 
-*Note: You might different values since we have limited the configurations available.*
+![](/img/2026-03-16_12-10-46.png)
 
-We won't do that today.
+Hit Enter to proceed.
+
+The second prompt is to identify the type of SAS backend to connect to. Here we are using SAS Viya.
+
+![](/img/2026-03-16_11-48-35.png)
+
+> *Notice that the SAS Extension for VS Code can also work with SAS 9.4 using a variety of connection protocols, too.*
+
+The next prompt is to specify the desired SAS compute context. If it's already populated, delete whatever is there. **Leave it blank**:
+
+![](/img/2026-03-16_12-11-12.png)
+
+> *SAS Viya provides compute contexts as a preset for specific parameters and behaviors. You can find the current list of SAS compute context names in **SAS Viya Environment Manager** > **Contexts** > **Compute Contexts***.
+
+Hit Enter to proceed.
+
+The following prompt tells the SAS Extension where to find HTTP RESTful endpoints to communicate with SAS Viya. Type in this workshop's location:
+
+`https://server.demo.sas.com`
+
+![](/img/2026-03-16_11-49-04.png)
+
+> *Your site IT team determines the actual URL for SAS Viya running in your environment.*
+
+Hit Enter to proceed.
+
+At this point, the SAS Extension has enough information that it wants to test the connection by signing on:
+
+![](/img/2026-03-16_12-01-02.png)
+
+Allow it. And a new web browser window will appear prompting you to sign into SAS Viya. Enter the credentials for a new user:
+
+- User ID: `Lynn`
+- Password: `Student1`
+
+![](/img/2026-03-16_12-12-03.png)
+
+Click the **Sign In** button to proceed.
+
+If user authentication is successful, then a token is generated as an authorization code.
+
+![](/img/2026-03-16_12-02-01.png)
+
+**First:** copy the authorization code (select and Ctrl+C)
+
+**Then:** click the **Sign Out** button and/or close the browser window.
+
+> *Pro-tip: wait until you've confirmed successful copy & paste of the authorization code in the next step before closing the browser window - just in case you need to copy the authorization code again properly*
+
+Return to VS Code and the Command Palette should now show a prompt for you to enter the authorization code - paste it in:
+
+![](/img/2026-03-16_12-02-47.png)
+
+Hit Enter to proceed. You should briefly see a "Connecting" panel appear at the bottom right of the window:
+
+![](/img/2026-03-13_09-55-41.png)
+
+### Validate the connection
+
+The SAS Extension adds a status indicator so you know which connection profile is active. Look for it at the bottom of the window on the left:
+
+![](/img/2026-03-16_13-02-54.png)
+
+In the **Activity Bar**, click the icon for the **SAS Extension**. Look under the **SAS SERVER** section and expand **SAS Server** > **Home** > **workshop** and find **_VSCODE_DEMO**.
+
+![](/img/2026-03-16_12-25-00.png)
+
+This workshop's authors were kinda clever and setup the folder structure and permissions on the SAS server to allow **Lynn** to see the files that were originally placed there by **Student** earlier. Of course, you have many controls to manage the visibility of files and data in SAS Viya for sharing (or not) as suits your needs.
+
+At this, **Lynn** can re-run the exercises above.
+
+### &#x1F6A9; Status Check
+
+One instance of VS Code can work with multiple deployments of the SAS Viya platform (and SAS 9.4, too). And for each, you might have one or more user identities to choose from as well. Furthermore, some tasks require special resources (like GPU, or extra RAM, etc.) - and for those, different SAS compute contexts can be specified. There is a lot of potential flexibility builtin so that your jobs run in the right place with the expected resources, permissions, and more.
+
+## All done!
 
 This concludes our Hands-On Workshop!
 
@@ -635,14 +674,10 @@ Thanks for participating!
 
 ## Going further
 
-### Modern Data Science with SAS Viya Workbench and Python
-
-Curious about how an end-to-end data science project is managed in SAS Viya Workbench?
-
-You can check this [free course](https://communities.sas.com/t5/SAS-Viya-Workbench-Getting/Modern-Data-Science-with-SAS-Viya-Workbench-and-Python/ta-p/947920) and its [materials](https://github.com/sassoftware/sas-education/tree/main/sas1).
-
 ### SAS Extension for Visual Studio Code
 
-Good news! The SAS Extension for Visual Studio Code is not limited to SAS Viya Workbench. You can install it in your own VS Code instance and use it to connect to your SAS Viya or SAS 9 environment.
+There's a lot more you can learn about the [SAS Extension for VS Code](https://developer.sas.com/programming/vs_code_extension). You'll find How-To videos to take you farther as well as information about the SAS Viya Copilot Extension for VS Code.
 
-Check [here](https://developer.sas.com/programming/vs_code_extension) for more information.
+![](/img/2026-03-16_13-19-39.png)
+
+Beyond the extensions for VS Code, the SAS Developers site (<https://developers.sas.com>) provides detailed documentation about SAS programming APIs, too.
