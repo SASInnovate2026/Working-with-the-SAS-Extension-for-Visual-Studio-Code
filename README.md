@@ -8,7 +8,7 @@ By enabling SAS programming development in VS Code, you will have a fully integr
 
 ## Session Information
 
-*   Format: Hands on workshop
+*   Format: Hands on workshop ([instructions](/Working_with_the_SAS_Extension_for_VS_Code.md))
 *   Estimated Duration: 45 minutes of content and exercises.
 *   SAS Viya 2025.12 Stable Release (December 2025)​.
 *   Presented by: **[Rob Collum](mailto:Rob.Collum@sas.com)**, Advisory Technical Architect, SAS Institute<br />
@@ -16,7 +16,7 @@ By enabling SAS programming development in VS Code, you will have a fully integr
 
 ## Important Information
 
-This site provides the hands-on instructions for a specific SAS Innovate 2026 provided by SAS Education.  The instructions in these pages are specific to the workshop and ***should not*** be considered a replacement for the official [SAS Documentation](https://documentation.sas.com).  Some parts of these instructions will **only** work correctly in the Lab environments provided by SAS Education.
+This site provides the [hands-on instructions](/Working_with_the_SAS_Extension_for_VS_Code.md) for a specific SAS Innovate 2026 provided by SAS Education.  The instructions in these pages are specific to the workshop and ***should not*** be considered a replacement for the official [SAS Documentation](https://documentation.sas.com).  Some parts of these instructions will **only** work correctly in the Lab environments provided by SAS Education.
 
 Content from this site should not be copied or distributed.  This site has been made publicly available **only** to assist in completing the associated Lab.
 

@@ -18,8 +18,8 @@ By enabling SAS programming development in VS Code, you will have a fully integr
 - [Working with SAS Notebooks](#working-with-sas-notebooks)
 - [Working with Python](#working-with-python)
 - [Set up your own connection profile](#set-up-your-own-connection-profile)
-- [All done!](#all-done)
-- [Going further](#going-further)
+- [All done](#all-done)
+- [Next steps](#next-steps)
 
 ## Open Visual Studio Code
 
@@ -27,7 +27,7 @@ In this hands-on environment, you should be logged into a virtual machine and se
 
 ![vscode](/img/vscode-logo.png)
 
-Double-click to open it.
+Double-click to open it. Then resize and place the window as desired.
 
 ## The layout of Visual Studio Code
 
@@ -57,7 +57,7 @@ Let's customize VS Code and choose a darker color scheme.
 
 Open the VS Code Menu and select **File** > **Preferences** > **Theme** > **Color Theme**:
 
-The **Command Palette** Start prompts you to "Select Color Theme". Type "sas" and choose the **SAS Dark** theme:
+The **Command Palette** field prompts you to "Select Color Theme". Type "sas" and choose the **SAS Dark** theme:
 
 ![](/img/franir_2025-03-18-16-51-25.png)
 
@@ -79,11 +79,11 @@ But to showcase the power of the Command Palette, let's take a different approac
 
 ![](/img/2026-03-12_13-51-56.png)
 
-Start typing "Git C" and select **Git: Clone**:
+In the Command Palette field, start typing "**Git: Clone**" and select it from the list.
 
 ![](img/2026-03-12_13-48-10.png)
 
-Paste the following URL for this workshop's GitHub repository and press Enter to **Clone from URL**:
+Next, the Command Palette will prompt for a repository location. Paste the following URL for this workshop's GitHub repository and press Enter to **Clone from URL**:
 
 `https://github.com/SASInnovate2026/Working-with-the-SAS-Extension-for-Visual-Studio-Code.git`
 
@@ -111,27 +111,25 @@ We've cloned a project to work with in VS Code. By cloning the project, we have 
 
 ## Getting started with Git in SAS Programming
 
-SAS provides programming language features to work with Git repositories, too.
-
-So now let's clone the same GitHub repository on to the SAS server in our Kubernetes environment.
+SAS provides programming language features to work with Git repositories, too. So now let's clone the same GitHub repository on to the SAS server in our Kubernetes environment.
 
 In the cloned repository, explore the **Programs** folder. It contains SAS programs we'll use for this workshop.
 
 ![](/img/2026-03-13_09-50-44.png)
 
-Click on the "git_checkout.sas" program. That will open the file in the main work area. We don't need to edit it here - it's already set up for this workshop. We just want to run it.
+Click on the "**git_checkout.sas**" program. That will open the file in the main work area. We don't need to edit it here - it's already set up for this workshop. We just want to run it.
 
 Find the "running man" icon at the top-right of the editor pane...
 
 ![](/img/2026-03-13_09-52-52.png)
 
-...and click it to submit the job to run in a SAS Compute Server on the Kubernetes cluster.
+...and click it to **submit** the job to run in a SAS Compute Server on the Kubernetes cluster.
 
 If this is the very first action attempting to communicate with the SAS Compute Server, then you should briefly see a "Connecting" panel appear at the bottom right of the window:
 
 ![](/img/2026-03-13_09-55-41.png)
 
-Followed by a message about running the SAS program code. That should complete in just a few seconds. And then you're presented with the SAS Log Output in a new pane that appears at the bottom of the work area:
+And that's followed by a message about running the SAS program code. This simple program should complete in just a few seconds. And then you're presented with the SAS Log Output in a new pane that appears at the bottom of the work area:
 
 ![](/img/2026-03-13_09-59-25.png)
 
@@ -153,7 +151,7 @@ We've cloned the project a second time, this time to place the files in a locati
 
 ​As a data scientist at an online personal styling service, you’ll use machine learning models to help us analyze customer churn. Customer “churn” simply means that our client has canceled their premium clothing subscription. And since it often is more difficult to find a new customer than keep an existing one, you will help us identify which clients are likely on the cusp of churning, so that we can find ways to retain them.​
 
-In the cloned repository on the SAS server, explore the **Data** folder. It contains various data sets for our project in various formats:
+In the cloned VSCODE repository on the SAS server, explore the **Data** folder. It contains various data sets for our project in various formats:
 
 ![](/img/2026-03-13_10-29-52.png)
 
@@ -199,7 +197,7 @@ This should look like the following:
 libname churn "/workshop/_VSCODE_DEMO/Data" ;
 ```
 
-You're ready to submit this code using the Run button:
+You're ready to submit this code using the **Run** button:
 
 ![](img/2026-03-13_10-36-45.png)
 
@@ -334,7 +332,7 @@ Let's deal with that briefly next.
 
 ## Working with Source Control in VS Code
 
-Source control (a.k.a., source code management, a.k.a., version control) is the practice of tracking and controlling changes to files over time. There are lots of variations and tools. Git in particular is very popular and commonly used.
+Source control (a.k.a., source code management, a.k.a., version control) is the practice of tracking and controlling changes to files over time. There are lots of variations and tools. [Git](https://git-scm.com) in particular is very popular and commonly used.
 
 When you saved your SAS program file to the Programs folder in the repo location we cloned from Github, the local Git service noticed the change - and placed that new blue badge on the **Source Control** icon in VS Code's Activity Bar. That's a prompt for you to take the next steps: stage, then commit the change.
 
@@ -342,13 +340,13 @@ Your file is safely saved to disk, but it's not yet being formally tracked by Gi
 
 ![](img/2026-03-13_13-18-22.png)
 
-It currently shows your new `data_access.sas` program file under the list of **Changes** it noticed. We can *stage* that change in preparation for *commit* by clicking that `+` icon to the right of the file's name.
+It currently shows your new `data_access.sas` program file under the list of **Changes** it noticed. We can *stage* that change in preparation for *commit* by clicking that **`+`** icon to the right of the file's name.
 
 A new section named **Staged Changes** with your file will appear there above the Changes section.
 
 > *Staging simply allows us to group one or more files together in preparation for commit.*
 
-Enter a descriptive commit message in the field provided - like, "my nifty SAS program" - and click the Commit button.
+Enter a descriptive commit message in the field provided - like, "my nifty SAS program" - and click the **Commit** button.
 
 ![](img/2026-03-13_13-28-06.png)
 
@@ -358,6 +356,8 @@ Or, it would - if we had initialized Git properly. &#x1F61C;
 
 ![](img/2026-03-13_13-32-30.png)
 
+Click **Cancel**.
+
 We'll stop here as we're just making the point about VS Code's support for Git as a source code management utility.
 
 ### Bonus
@@ -366,13 +366,17 @@ Assuming the commit above had worked, that just updates the *local* git repo on 
 
 But...
 
-That requires establishing authentication credentials with the remote repo (in GitHub). And since you're not one of the maintaining authors of this particular project, you don't have the means to authenticate and push updates there. Makes sense, right? If it was your repo, you wouldn't want unknown, random folks on the Internet modifying your hard work.
+That requires establishing authentication credentials with the [remote repo](https://docs.github.com/en/get-started/git-basics/about-remote-repositories) (in GitHub). And since you're not one of the maintaining authors of this particular project, you don't have the means to authenticate and push updates there. Makes sense, right? If it was your repo, you wouldn't want unknown, random folks on the Internet modifying your hard work.
 
-You can, however, create your own GitHub (or wherever) repo that you own and configure your local Git to use that as its "origin". Then, you could push the changes up to a location under your control where you are authenticated.
+You can, however, create your own GitHub (or wherever) repo that you own and configure your local Git to use that as its "[origin](https://docs.github.com/en/get-started/git-basics/managing-remote-repositories)". Then, you could push the changes up to a location under your control where you are authenticated.
 
 ### &#x1F6A9; Status Check
 
 As your SAS program code evolves over time, it can be really helpful to track what changes were made, who made them and when, along with commit messages to help find key updates.
+
+### Close open work
+
+We're finished with the data access and git repo activities. Close your SAS program code file, data previews, SAS log output, and any other content in the Work Area.
 
 ## Working with SAS Notebooks
 
@@ -504,8 +508,6 @@ Add a SQL code cell (the label is mistakenly marked as '**MS SQL**' when it shou
 
 ![](/img/franir_2025-03-20-11-06-44.png)
 
-This SQL cell allows you to code directly a SAS SQL statement without having to specify `PROC SQL` and `quit;`.
-
 Use the following code to join all five tables:
 
 ```sql
@@ -517,6 +519,8 @@ create table churn_wip (drop=custId customerSubscrCode reviewId ordinal_root ord
       left join churn.techSupportEvals as evals on churn.ID=evals.ID
       left join rev.reviews as rev on churn.reviewId=rev.reviewId
 ```
+
+> *Notice that this SQL cell allows you to directly enter a SAS SQL statement without having to specify `PROC SQL` and `quit;`.*
 
 Run the code and review the log output that's returned.
 
@@ -572,9 +576,15 @@ Run the notebook by selecting **Run All**:
 
 ![](/img/franir_2025-03-20-15-12-50.png)
 
+You might see this prompt about network access appear:
+
+![](/img/2026-03-16_15-46-02.png)
+
+Just click **Cancel** if you do.
+
 After each code cell has completed running, you should see sample data returned for review:
 
-![](images/franir_2025-03-20-15-26-34.png)
+![](img/franir_2025-03-20-15-26-34.png)
 
 ### &#x1F6A9; Status Check
 
@@ -669,18 +679,18 @@ At this point, **Lynn** can re-run the exercises above.
 
 One instance of VS Code can work with multiple deployments of the SAS Viya platform (and SAS 9.4, too). And for each, you might have one or more user identities to choose from as well. Furthermore, some tasks require special resources (like GPU, or extra RAM, etc.) - and for those, different SAS compute contexts can be specified. There is a lot of potential flexibility builtin so that your jobs run in the right place with the expected resources, permissions, and more.
 
-## All done!
+## All done
 
 This concludes our Hands-On Workshop.
 
 Thanks for participating!
 
-## Going further
-
-### SAS Extension for Visual Studio Code
+## Next steps
 
 There's a lot more you can learn about the [SAS Extension for VS Code](https://developer.sas.com/programming/vs_code_extension). Follow that link to find How-To videos to take you farther as well as information about the SAS Viya Copilot Extension for VS Code.
 
-![](/img/2026-03-16_13-19-39.png)
+### SAS Developer Tools
 
 Beyond the extensions for VS Code, the SAS Developers site (<https://developers.sas.com>) provides detailed documentation about SAS programming APIs, too.
+
+![](/img/2026-03-16_13-19-39.png)
