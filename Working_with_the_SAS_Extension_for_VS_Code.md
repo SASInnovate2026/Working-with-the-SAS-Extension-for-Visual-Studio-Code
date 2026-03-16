@@ -592,7 +592,7 @@ Some sites need to share data to work between users who have existing skillsets 
 
 ## Set up your own connection profile
 
-We jumped right into this workshop with a **connection profile** that identifies us to SAS Viya as the user named `student`. Now, let's create a new profile to identify as a different user.
+We jumped right into this workshop with a **connection profile** that identifies us to SAS Viya as the user named `student`. Now, let's create a [new connection profile](https://sassoftware.github.io/vscode-sas-extension/Configurations/Profiles/viya/) to identify as a different user.
 
 Press **Ctrl+Shift+P** to bring up the **Command Palette** and type the first few letters for `SAS: Add New Connection Profile`:
 
@@ -606,17 +606,11 @@ The first prompt is to name the new connection profile - we'll go with "**Lynn o
 
 Hit Enter to proceed.
 
-The second prompt is to identify the type of SAS backend to connect to. Here we are using SAS Viya.
+The second prompt is to identify the type of SAS backend to connect to. Select **SAS Viya** from the list.
 
 ![](/img/2026-03-16_11-48-35.png)
 
 > *Notice that the SAS Extension for VS Code can also work with SAS 9.4 using a variety of connection protocols, too.*
-
-The next prompt is to specify the desired SAS compute context. If it's already populated, delete whatever is there. **Leave it blank**:
-
-![](/img/2026-03-16_12-11-12.png)
-
-> *SAS Viya provides compute contexts as a preset for specific parameters and behaviors. You can find the current list of SAS compute context names in **SAS Viya Environment Manager** > **Contexts** > **Compute Contexts***.
 
 Hit Enter to proceed.
 
@@ -630,7 +624,21 @@ The following prompt tells the SAS Extension where to find HTTP RESTful endpoint
 
 Hit Enter to proceed.
 
-At this point, the SAS Extension has enough information that it wants to test the connection by signing on:
+The next prompt is to specify the desired SAS compute context. If it's already populated, delete whatever is there. **Leave it blank**.
+
+![](/img/2026-03-16_12-11-12.png)
+
+> *SAS Viya provides compute contexts as a preset for specific parameters and behaviors. You can find the current list of SAS compute context names in **SAS Viya Environment Manager** > **Contexts** > **Compute Contexts***.
+
+Hit Enter to proceed.
+
+Another prompt asks for the Client ID. **Leave it blank**. (It will default to use value "`vscode`".)
+
+![](/img/2026-03-16_16-40-38.png)
+
+Hit Enter to proceed.
+
+At this point, the SAS Extension has enough information that it wants to make the connection by signing on:
 
 ![](/img/2026-03-16_12-01-02.png)
 
