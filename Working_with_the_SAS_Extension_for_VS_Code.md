@@ -634,7 +634,9 @@ At this point, the SAS Extension has enough information that it wants to test th
 
 ![](/img/2026-03-16_12-01-02.png)
 
-Allow it. And a new web browser window will appear prompting you to sign into SAS Viya. Enter the credentials for a new user:
+> &#x26A0; *Attention: Take a quick look at your web browser. Make sure you're not already signed into SAS Studio, SAS Visual Analytics, or any other SAS web apps. If you are, be sure to **sign out** first, otherwise, this action will effectively sign in with that identity.*
+
+**Allow** it. And a new web browser window will appear prompting you to sign into SAS Viya. Enter the credentials for a new user:
 
 - User ID: `Lynn`
 - Password: `Student1`
