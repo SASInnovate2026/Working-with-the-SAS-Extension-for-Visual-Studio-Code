@@ -1,22 +1,25 @@
-# Working with the SAS Extension for Visual Studio Code
+# Welcome
 
 This hands on workshop demonstrates the **[SAS Extension for Microsoft Visual Studio Code](https://github.com/sassoftware/vscode-sas-extension/)** and its integration with the SAS Viya platform for efficient data science programming. We explain how to configure VS Code to work with the SAS Programming Runtime Environment, access and execute SAS program code, work with data, integrate source code management with Git, and more.
 
 By enabling SAS programming development in VS Code, you will have a fully integrated development environment that supports your SAS analytic workflows.
 
-- [Working with the SAS Extension for Visual Studio Code](#working-with-the-sas-extension-for-visual-studio-code)
-    - [Open Visual Studio Code](#open-visual-studio-code)
-    - [Working in Visual Studio Code](#working-in-visual-studio-code)
-    - [Customizing VS Code](#customizing-vs-code)
-    - [Getting started with Git in VS Code](#getting-started-with-git-in-vs-code)
-    - [Getting started with Git in SAS Programming](#getting-started-with-git-in-sas-programming)
-    - [Working with data](#working-with-data)
-    - [Working with Source Control in VS Code](#working-with-source-control-in-vs-code)
-    - [Working with SAS Notebooks](#working-with-sas-notebooks)
-    - [Working with Python](#working-with-python)
-    - [Set up your own connection profile](#set-up-your-own-connection-profile)
-    - [All done!](#all-done)
-    - [Going further](#going-further)
+**SAS INNOVATE 2026 HANDS-ON WORKSHOP**
+
+# Working with the SAS Extension for Visual Studio Code
+
+- [Open Visual Studio Code](#open-visual-studio-code)
+- [The layout of Visual Studio Code](#the-layout-of-visual-studio-code)
+- [Customizing VS Code](#customizing-vs-code)
+- [Getting started with Git in VS Code](#getting-started-with-git-in-vs-code)
+- [Getting started with Git in SAS Programming](#getting-started-with-git-in-sas-programming)
+- [Working with data](#working-with-data)
+- [Working with Source Control in VS Code](#working-with-source-control-in-vs-code)
+- [Working with SAS Notebooks](#working-with-sas-notebooks)
+- [Working with Python](#working-with-python)
+- [Set up your own connection profile](#set-up-your-own-connection-profile)
+- [All done!](#all-done)
+- [Going further](#going-further)
 
 ## Open Visual Studio Code
 
@@ -26,7 +29,7 @@ In this hands-on environment, you should be logged into a virtual machine and se
 
 Double-click to open it.
 
-## Working in Visual Studio Code
+## The layout of Visual Studio Code
 
 **Microsoft Visual Studio Code** (**VS Code**) is a free, open-source code editor that supports various programming languages and offers features like debugging, syntax highlighting, and version control.
 
@@ -56,7 +59,7 @@ Open the VS Code Menu and select **File** > **Preferences** > **Theme** > **Colo
 
 The **Command Palette** Start prompts you to "Select Color Theme". Type "sas" and choose the **SAS Dark** theme:
 
-![](images/franir_2025-03-18-16-51-25.png)
+![](/img/franir_2025-03-18-16-51-25.png)
 
 The color scheme is just one of the many preferences you can modify... so now you know where to find them.
 
@@ -174,7 +177,7 @@ Start off by creating a new SAS program file: **File** > **New File...**.
 
 The Command Palette appears prompting you for the file's type and name. Select **SAS File**:
 
-![](images/franir_2025-03-19-10-52-53.png)
+![](/img/franir_2025-03-19-10-52-53.png)
 
 In the new *Untitled* SAS program file, copy the following code:
 
@@ -390,11 +393,11 @@ In a SAS Notebook, we can mix:
 
 Create a new file by selecting the VS Code Menu > **File** > **New File...** and in the Command Palette prompt, select **SAS Notebook**:
 
-![](images/franir_2025-03-19-16-09-46.png)
+![](/img/franir_2025-03-19-16-09-46.png)
 
 By default, the new notebook has one empty cell that is for SAS code. Let's change that:
 
-![](images/franir_2025-03-20-09-52-41.png)
+![](/img/franir_2025-03-20-09-52-41.png)
 
 On the far right bottom of that empty cell is its type - currently, that's "SAS". Click on the word **SAS** there and in the Command Palette prompt, select **Markdown** as the language mode for that cell.
 
@@ -408,19 +411,19 @@ Let's create some text headers for this new notebook - in the Markdown field, en
 
 To see what's described by the Markdown so far, try clicking on the checkmark &check; icon at the top right of the field:
 
-![](images/franir_2025-03-20-09-56-16.png)
+![](/img/franir_2025-03-20-09-56-16.png)
 
 You're shown a preview of the rendered output. Those hashtags # are how section headers are identified in markdown syntax.
 
-![](images/franir_2025-03-20-09-56-55.png)
+![](/img/franir_2025-03-20-09-56-55.png)
 
 Add a code cell by clicking on **+ Code** at the top of the notebook:
 
-![](images/franir_2025-03-20-09-58-18.png)
+![](/img/franir_2025-03-20-09-58-18.png)
 
 Confirm that it is a SAS cell:
 
-![](images/franir_2025-03-20-09-59-05.png)
+![](/img/franir_2025-03-20-09-59-05.png)
 
 Paste the following code in the cell to list the columns of the SAS data set:
 
@@ -432,15 +435,15 @@ run ;
 
 Run the cell:
 
-![](images/franir_2025-03-20-10-03-06.png)
+![](/img/franir_2025-03-20-10-03-06.png)
 
 You should get your SAS output right below your code:
 
-![](images/franir_2025-03-20-10-03-52.png)
+![](/img/franir_2025-03-20-10-03-52.png)
 
 Add a new Markdown cell at the bottom of your output:
 
-![](images/franir_2025-03-20-10-12-04.png)
+![](/img/franir_2025-03-20-10-12-04.png)
 
 Add the following header text:
 
@@ -450,7 +453,7 @@ Add the following header text:
 
 Validate the Markdown cell and add a new code cell:
 
-![](images/franir_2025-03-20-10-15-09.png)
+![](/img/franir_2025-03-20-10-15-09.png)
 
 Paste the following code to list the columns of the Parquet data set:
 
@@ -462,7 +465,7 @@ run ;
 
 Run the cell.
 
-![](images/franir_2025-03-20-10-18-39.png)
+![](/img/franir_2025-03-20-10-18-39.png)
 
 Add a new Markdown cell with the following level-2 header (i.e., with two hashtags ##): "**Build some distribution reports**".
 
@@ -479,7 +482,7 @@ run ;
 
 Check the results and the plot:
 
-![](images/franir_2025-03-20-11-09-10.png)
+![](/img/franir_2025-03-20-11-09-10.png)
 
 You can observe that a SAS notebook shows SAS output when the SAS code generates it. You'll learn that it displays the SAS log otherwise.
 
@@ -487,11 +490,11 @@ What if you want to check the log when the code generates output?
 
 Click on the ```...``` > **Change Presentation** between the code and the output:
 
-![](images/franir_2025-03-20-12-04-42.png)
+![](/img/franir_2025-03-20-12-04-42.png)
 
 Then select **SAS Log Renderer**:
 
-![](images/franir_2025-03-20-12-06-11.png)
+![](/img/franir_2025-03-20-12-06-11.png)
 
 You should see the SAS log now.
 
@@ -499,7 +502,7 @@ Add a new Markdown cell with the following level-1 header (i.e., one hashtag #):
 
 Add a SQL code cell (the label is mistakenly marked as '**MS SQL**' when it should actually be '**SAS SQL**').
 
-![](images/franir_2025-03-20-11-06-44.png)
+![](/img/franir_2025-03-20-11-06-44.png)
 
 This SQL cell allows you to code directly a SAS SQL statement without having to specify `PROC SQL` and `quit;`.
 
@@ -521,7 +524,7 @@ Select the **SAS** icon in the Activity Bar, look in the **LIBRARIES** section t
 
 > *If you don't see CHURN_WIP in the WORK library, mouse-over the **LIBRARIES** section and click the refresh &#x21BB; icon to update the list.*
 
-![](images/franir_2025-03-20-13-53-39.png)
+![](/img/franir_2025-03-20-13-53-39.png)
 
 Finally, let's save the final table as a Parquet data set.
 
@@ -539,7 +542,7 @@ run ;
 
 Run the code, review the log output that's returned, and look for **churn_abt** in the **CHURN_PQ** library:
 
-![](images/franir_2025-03-20-13-57-51.png)
+![](/img/franir_2025-03-20-13-57-51.png)
 
 View the table and confirm the new computed column "customerAge" exists (scroll all the way to the right).
 
@@ -561,13 +564,13 @@ You're not limited to only run SAS code. Python is the *lingua fraca* for progra
 
 Switch to the **Explorer** pane and navigate to ```SAS-Viya-Workbench-and-VS-Code/Programs``` to open ```python_sample_data_access.ipynb```:
 
-![](images/franir_2025-03-20-15-08-34.png)
+![](/img/franir_2025-03-20-15-08-34.png)
 
 This is an **Interactive Python Notebook** that shows using Python code to open the different types of data as we did above with SAS.
 
 Run the notebook by selecting **Run All**:
 
-![](images/franir_2025-03-20-15-12-50.png)
+![](/img/franir_2025-03-20-15-12-50.png)
 
 After each code cell has completed running, you should see sample data returned for review:
 
@@ -660,7 +663,7 @@ In the **Activity Bar**, click the icon for the **SAS Extension**. Look under th
 
 This workshop's authors were kinda clever and setup the folder structure and permissions on the SAS server to allow **Lynn** to see the files that were originally placed there by **Student** earlier. Of course, you have many controls to manage the visibility of files and data in SAS Viya for sharing (or not) as suits your needs.
 
-At this, **Lynn** can re-run the exercises above.
+At this point, **Lynn** can re-run the exercises above.
 
 ### &#x1F6A9; Status Check
 
@@ -668,7 +671,7 @@ One instance of VS Code can work with multiple deployments of the SAS Viya platf
 
 ## All done!
 
-This concludes our Hands-On Workshop!
+This concludes our Hands-On Workshop.
 
 Thanks for participating!
 
@@ -676,7 +679,7 @@ Thanks for participating!
 
 ### SAS Extension for Visual Studio Code
 
-There's a lot more you can learn about the [SAS Extension for VS Code](https://developer.sas.com/programming/vs_code_extension). You'll find How-To videos to take you farther as well as information about the SAS Viya Copilot Extension for VS Code.
+There's a lot more you can learn about the [SAS Extension for VS Code](https://developer.sas.com/programming/vs_code_extension). Follow that link to find How-To videos to take you farther as well as information about the SAS Viya Copilot Extension for VS Code.
 
 ![](/img/2026-03-16_13-19-39.png)
 
