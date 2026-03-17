@@ -19,5 +19,5 @@ run;
 %git_checkout(
   repo=https://github.com/SASInnovate2026/Working-with-the-SAS-Extension-for-Visual-Studio-Code.git,
   path=/home/student/workshop/_VSCODE_DEMO,
-  branch=rocoll-init
+  branch=main
 );
