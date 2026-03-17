@@ -576,11 +576,15 @@ Run the notebook by selecting **Run All**:
 
 ![](/img/franir_2025-03-20-15-12-50.png)
 
+<!-- 
+
 You might see this prompt about network access appear:
 
 ![](/img/2026-03-16_15-46-02.png)
 
 Just click **Cancel** if you do.
+
+-->
 
 After each code cell has completed running, you should see sample data returned for review:
 
