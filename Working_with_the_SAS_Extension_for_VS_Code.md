@@ -661,7 +661,7 @@ If user authentication is successful, then a token is generated as an authorizat
 
 **Then:** click the **Sign Out** button and/or close the browser window.
 
-> *Pro-tip: wait until you've confirmed successful copy & paste of the authorization code in the next step before closing the browser window - just in case you need to copy the authorization code again properly*
+> &#x1FA84; *Pro-tip: wait until you've confirmed successful copy & paste of the authorization code in the next step before closing the browser window - just in case you need to copy the authorization code again properly*
 
 Return to VS Code and the Command Palette should now show a prompt for you to enter the authorization code - paste it in:
 
