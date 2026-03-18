@@ -15,8 +15,8 @@ By enabling SAS programming development in VS Code, you will have a fully integr
 - [Getting started with Git in SAS Programming](#getting-started-with-git-in-sas-programming)
 - [Working with data](#working-with-data)
 - [Working with Source Control in VS Code](#working-with-source-control-in-vs-code)
+- [Working with Jupyter Notebooks](#working-with-jupyter-notebooks)
 - [Working with SAS Notebooks](#working-with-sas-notebooks)
-- [Working with Python](#working-with-python)
 - [Set up your own connection profile](#set-up-your-own-connection-profile)
 - [All done](#all-done)
 - [Next steps](#next-steps)
@@ -378,9 +378,46 @@ As your SAS program code evolves over time, it can be really helpful to track wh
 
 We're finished with the data access and git repo activities. Close your SAS program code file, data previews, SAS log output, and any other content in the Work Area.
 
+---
+---
+
+## Working with Jupyter Notebooks
+
+You're not limited to only run SAS code. Python is the *lingua fraca* for programmers, data scientists, and modelers.
+
+Switch to the **Explorer** pane and navigate to ```SAS-Viya-Workbench-and-VS-Code/Programs``` to open ```python_sample_data_access.ipynb```:
+
+![](/img/franir_2025-03-20-15-08-34.png)
+
+This is an **Interactive Jupyter Notebook** that shows using Python code to access different types of data as we did above with SAS program code.
+
+Run the notebook by selecting **Run All**:
+
+![](/img/franir_2025-03-20-15-12-50.png)
+
+<!-- 
+
+You might see this prompt about network access appear:
+
+![](/img/2026-03-16_15-46-02.png)
+
+Just click **Cancel** if you do.
+
+-->
+
+After each code cell has completed running, you should see sample data returned for review:
+
+![](img/franir_2025-03-20-15-26-34.png)
+
+### &#x1F6A9; Status Check
+
+Jupyter notebooks combine code and descriptive text into a flow that is self-documenting and resusable.
+
+Some sites need to share data to work between users who have existing skillsets and workflows. The SAS Extension for VS Code allows you to integrate SAS capabilities with other programming techniques, like Jupyter notebooks.
+
 ## Working with SAS Notebooks
 
-Python (and other languages) programmers have long enjoyed working with Jupyter Notebooks. A Jupyter Notebook is a page that can be authored with two main types of input:
+Python (and other languages) programmers have long enjoyed working with Jupyter Notebooks. As shown above, they can be authored with two main types of content:
 
 -   **Code (or Execute) cells**: Where you write and execute live code. The output appears directly below the cell.
 
@@ -521,6 +558,14 @@ create table churn_wip (drop=custId customerSubscrCode reviewId ordinal_root ord
 ```
 
 > *Notice that this SQL cell allows you to directly enter a SAS SQL statement without having to specify `PROC SQL` and `quit;`.*
+>
+> Can you spot the SAS SQL syntax items above?
+>
+> | Code syntax element | SAS SQL | ANSI or MS SQL |
+> | -- | -- | -- |
+> | `drop=` | SAS uses dataset options in parentheses to exclude columns | Invalid. You must explicitly list the columns you want in the SELECT clause |
+> | `create table ... as` | Create a table from a query in SAS | Invalid in MS SQL. MS SQL uses `SELECT * INTO new_table FROM ...` |
+> | Two-level names | Ex) `churn_pq.customer_churn` refers to a libref.dataset | Refers to schema.table |
 
 Run the code and review the log output that's returned.
 
@@ -562,37 +607,12 @@ You can select anywhere on the PC, of course, but we have a location in mind. Na
 
 You have brought together several components of the data science programming lifecycle using VS Code to author and submit SAS programs, create and examine data in different formats, and generated a SAS Notebook as a document that shows it all working together.
 
-## Working with Python
+### Close open work
 
-You're not limited to only run SAS code. Python is the *lingua fraca* for programmers, data scientists, and modelers.
+We're finished with the notebook activities. Close your notebook files, data previews, and any other content in the Work Area.
 
-Switch to the **Explorer** pane and navigate to ```SAS-Viya-Workbench-and-VS-Code/Programs``` to open ```python_sample_data_access.ipynb```:
-
-![](/img/franir_2025-03-20-15-08-34.png)
-
-This is an **Interactive Python Notebook** that shows using Python code to open the different types of data as we did above with SAS.
-
-Run the notebook by selecting **Run All**:
-
-![](/img/franir_2025-03-20-15-12-50.png)
-
-<!-- 
-
-You might see this prompt about network access appear:
-
-![](/img/2026-03-16_15-46-02.png)
-
-Just click **Cancel** if you do.
-
--->
-
-After each code cell has completed running, you should see sample data returned for review:
-
-![](img/franir_2025-03-20-15-26-34.png)
-
-### &#x1F6A9; Status Check
-
-Some sites need to share data to work between users who have existing skillsets and workflows. The SAS Extension for VS Code allows you to integrate SAS capabilities with other programming techniques.
+---
+---
 
 ## Set up your own connection profile
 
