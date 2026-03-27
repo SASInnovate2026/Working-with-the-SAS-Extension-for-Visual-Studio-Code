@@ -803,11 +803,11 @@ The SAS Extension adds a status indicator so you know which connection profile i
 
 ![](/img/2026-03-16_13-02-54.png)
 
-In the **Activity Bar**, click the icon for the **SAS Extension**. Look under the **SAS SERVER** section and expand **SAS Server** > **Home** > **workshop** and find **_VSCODE_DEMO**.
+> *Note: don't click on the profile name, just hover your mouse pointer over it.*
+
+In the **Activity Bar**, click the icon for the **SAS Extension**. Look under the **SAS SERVER** section and expand **SAS Server** > **Home** > **home** > and find that **Lynn** has her own user home directory - and the **Student** directory we were using earlier isn't visible.
 
 ![](/img/2026-03-16_12-25-00.png)
-
-This workshop's authors were kinda clever and setup the folder structure and permissions on the SAS server to allow **Lynn** to see the files that were originally placed there by **Student** earlier. Of course, you have many controls to manage the visibility of files and data in SAS Viya for sharing (or not) as suits your needs.
 
 At this point, **Lynn** can re-run the exercises above.
 
