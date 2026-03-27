@@ -12,10 +12,10 @@ By enabling SAS programming development in VS Code, you will have a fully integr
 - [The layout of Visual Studio Code](#the-layout-of-visual-studio-code)
 - [Customizing VS Code](#customizing-vs-code)
 - [Getting started with Git in VS Code](#getting-started-with-git-in-vs-code)
-- [Getting started with Git in SAS Programming](#getting-started-with-git-in-sas-programming)
+- [Connect to SAS Viya with the SAS Extension](#connect-to-sas-viya-with-the-sas-extension)
+- [Upload workshop data](#upload-workshop-data)
 - [Working with data](#working-with-data)
 - [Working with Source Control in VS Code](#working-with-source-control-in-vs-code)
-- [Working with Jupyter Notebooks](#working-with-jupyter-notebooks)
 - [Working with SAS Notebooks](#working-with-sas-notebooks)
 - [Set up your own connection profile](#set-up-your-own-connection-profile)
 - [All done](#all-done)
@@ -109,51 +109,95 @@ You should now see your cloned repository folder in the **Explorer** view:
 
 We've cloned a project to work with in VS Code. By cloning the project, we have placed a copy of the repo on our own PC here. Because it's our own copy, then we can view files, make changes, or do anything else we want with it.
 
-## Getting started with Git in SAS Programming
+## Connect to SAS Viya with the SAS Extension
 
-SAS provides programming language features to work with Git repositories, too. So now let's clone the same GitHub repository on to the SAS server in our Kubernetes environment.
+Now let's see what it looks like to work with SAS Viya in the VS Code app. Click the **SAS logo** icon in the **Activity Bar**:
 
-In the cloned repository, explore the **Programs** folder. It contains SAS programs we'll use for this workshop.
+![](/img/2026-03-26_14-02-59.png)
 
-![](/img/2026-03-13_09-50-44.png)
-
-Click on the "**git_checkout.sas**" program. That will open the file in the main work area. We don't need to edit it here - it's already set up for this workshop. We just want to run it.
-
-Find the "running man" icon at the top-right of the editor pane...
-
-![](/img/2026-03-13_09-52-52.png)
-
-...and click it to **submit** the job to run in a SAS Compute Server on the Kubernetes cluster.
-
-If this is the very first action attempting to communicate with the SAS Compute Server, then you should briefly see a "Connecting" panel appear at the bottom right of the window:
+If this is the first time opening the SAS Extension in this session of VS Code, then you should briefly see a "Connecting" panel appear at the bottom right of the window:
 
 ![](/img/2026-03-13_09-55-41.png)
 
-And that's followed by a message about running the SAS program code. This simple program should complete in just a few seconds. And then you're presented with the SAS Log Output in a new pane that appears at the bottom of the work area:
+Once connected to the SAS Viya backend, you should see three main views into the SAS environment there:
 
-![](/img/2026-03-13_09-59-25.png)
+![](img/2026-03-26_14-13-43.png)
 
-You might want to scroll up to see the complete log, but as shown here we do see the message, "NOTE: Fetch succesful!".
+- **SAS CONTENT**: This includes report outputs, models, pipelines, and all the kinds of things you create while working in SAS Viya.
 
-Now let's confirm everything landed as expected. Look over at the Activity Bar and click the SAS icon to open the SAS Extension for VS Code:
+- **SAS SERVER**: This is a view into the files hosted in the operating system as visible from the SAS Compute Server running in SAS Viya. It's subject to all kinds of Kubernetes considerations, file permissions, etc.
 
-![](/img/2026-03-13_10-21-38.png)
+- **LIBRARIES**: These are the familiar SAS library resources where you can see data that's available to SAS.
 
-In the middle of the SAS pane, look at **SAS SERVER**. The folder structure is probably collapsed, so click to expand SAS Server > Home > Workshop and confirm **_VSCODE_DEMO** is there. That's where this workshop's repository from GitHub was cloned to.
-
-Close the "git_checkout.sas" program editor - we don't need it anymore.
+Feel free to click around to see what's there.
 
 ### &#x1F6A9; Status Check
 
-We've cloned the project a second time, this time to place the files in a location that is directly accessible to the SAS Compute Server in Kubernetes.
+You've connected to SAS Viya using the SAS Extension for VS Code and you can navigate the data resources available.
+
+## Upload workshop data
+
+Normally you'd expect to find your data mart of tables, files, and data sets attached to the server with a SAS library. But for this exercise, we wanted to show the ability move relatively small files from your PC up to the SAS Viya server to work with them, too.
+
+Expand the **SAS SERVER** heading to show the **SAS Server** sub-heading > **Home** > **home** > **student**:
+
+![](img/2026-03-26_16-33-40.png)
+
+We're going to upload some data here. If you right-click on the **student** folder, you'll see "Upload files". But don't use that. It only works for text files, and we want more.
+
+Let's use the Terminal capability. That's a command-line interface and with it, we can use the "scp" utility to securely copy files up to the server.
+
+In the **View** menu at the top of the VS Code window, click on **Terminal**. A new pane opens for you across the bottom of the VS Code window. The Powershell command prompt should show that you're currently in the "Working-with-the-SAS-Extension-for-Visual-Studio-Code" directory. Type `ls` and confirm you see the following:
+
+```log
+PS C:\Users\student\Working-with-the-SAS-Extension-for-Visual-Studio-Code> ls
+
+    Directory: C:\Users\student\Working-with-the-SAS-Extension-for-Visual-Studio-Code
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----         3/26/2026   7:36 AM                Data
+d-----         3/26/2026   7:36 AM                img
+d-----         3/26/2026   7:36 AM                Programs
+-a----         3/26/2026   7:36 AM           2039 README.md
+-a----         3/26/2026   7:36 AM          33495 Working_with_the_SAS_Extension_for_VS_Code.md
+```
+
+See that `Data` directory? We want to upload that to the SAS Server. If the above looks right to you, then proceed with:
+
+```bash
+# Uploads the "Data" directory from this PC to the 
+# student's home directory on the SAS Server
+scp -r Data server.demo.sas.com:/home/student
+```
+
+Since this is likely the first time such a connection is made, you'll be prompted about confirming the host's authenticity. Answer `yes` at the prompt to continue connecting.
+
+Next you'll be prompted for the `student` user's password. Enter `Metadata0`. The letters you type won't be visible - that's okay.
+
+If you get connected, then scp will show you details about what's copied:
+
+```log
+>> scp -r Data server.demo.sas.com:/home/student
+
+customers.sas7bdat          100%  320KB  52.1MB/s   00:00    
+customer_churn.parquet      100%  175KB  42.6MB/s   00:00     
+reviews.json                100%   12KB  11.9MB/s   00:00     
+subscriptions.csv           100%   69    67.4KB/s   00:00    
+techsupportevals.sas7bdat   100%  192KB  37.5MB/s   00:00    
+```
+
+### &#x1F6A9; Status Check
+
+We have some local data files that we want to take a closer look at, so we uploaded them to the SAS server.
 
 ## Working with data
 
-​As a data scientist at an online personal styling service, you’ll use machine learning models to help us analyze customer churn. Customer “churn” simply means that our client has canceled their premium clothing subscription. And since it often is more difficult to find a new customer than keep an existing one, you will help us identify which clients are likely on the cusp of churning, so that we can find ways to retain them.​
+​As a data scientist at an online personal styling service, you’ll use machine learning models to help analyze customer churn. Customer “churn” simply means that our client has canceled their premium clothing subscription. And since it often is more difficult to find a new customer than keep an existing one, you will help identify which clients are about to churn, so that we can find ways to retain them.
 
-In the cloned VSCODE repository on the SAS server, explore the **Data** folder. It contains various data sets for our project in various formats:
+Look closer at the **Data** folder we just created (see the **SAS SERVER** section). It contains data for our project in various file formats:
 
-![](/img/2026-03-13_10-29-52.png)
+![](img/2026-03-26_14-46-30.png)
 
 - **Customer churn** is a parquet table that provides metrics about customer activity over the last few months,
 - **Customers** is a SAS data set that describes customers’ attributes, such as their estimated income, homeowner status and birth date,
@@ -164,8 +208,6 @@ In the cloned VSCODE repository on the SAS server, explore the **Data** folder. 
 In this hands-on, we will focus on the data preparation part of the project.
 
 Even with our data spread across two SAS data sets, one CSV file, one JSON file, and one Parquet table, SAS makes it easy to bring them together.
-
-> *Note: Storing data in a Git repository is generally not recommended. While Git excels at version control and collaboration on text-based files like source code, it is not optimized for handling large datasets or binary files. In this hands-on example, we provide sample data in Git for simplicity.*
 
 ### Reading a SAS data set
 
@@ -194,7 +236,7 @@ This should look like the following:
 
 ```sas
 /* Churn demo - SAS data */
-libname churn "/workshop/_VSCODE_DEMO/Data" ;
+libname churn "/home/student/Data" ;
 ```
 
 You're ready to submit this code using the **Run** button:
@@ -219,7 +261,7 @@ Back in your SAS program file, add a new libname statement to access the Parquet
 
 ```sas
 /* Churn demo - Parquet data */
-libname churn_pq parquet "/workshop/_VSCODE_DEMO/Data" ;
+libname churn_pq parquet "/home/student/Data" ;
 ```
 
 Submit the code to run on the SAS Compute Server.
@@ -231,7 +273,7 @@ Confirm the SAS log shows success:
 ```log
 NOTE: Libref CHURN_PQ was successfully assigned as follows:
       Engine:        PARQUET
-      Physical Name: /workshop/_VSCODE_DEMO/Data
+      Physical Name: /home/student/Data
 ```
 
 And as before, look for **CHURN_PQ** in the **LIBRARIES** section of the SAS pane. Click on the **customer_churn** dataset to see a preview in the work area.
@@ -244,7 +286,7 @@ In your SAS program file, add the following code:
 
 ```sas
 /* Churn data - import CSV */
-proc import file="/workshop/_VSCODE_DEMO/Data/subscriptions.csv" out=subscriptions dbms=csv replace ;
+proc import file="/home/student/Data/subscriptions.csv" out=subscriptions dbms=csv replace ;
 run ;
 ```
 
@@ -274,7 +316,7 @@ In your SAS program file, add the following code:
 
 ```sas
 /* Churn demo - JSON Data */
-libname rev json "/workshop/_VSCODE_DEMO/Data/reviews.json" ;
+libname rev json "/home/student/Data/reviews.json" ;
 proc datasets lib=rev ;
 quit ;
 ```
@@ -293,7 +335,7 @@ Also be sure to confirm success in the SAS log, look for:
 NOTE: JSON data is only read once.  To read the JSON again, reassign the JSON LIBNAME.
 NOTE: Libref REV was successfully assigned as follows:
       Engine:        JSON
-      Physical Name: /workshop/_VSCODE_DEMO/Data/reviews.json
+      Physical Name: /home/student/Data/reviews.json
 
 
 19   proc datasets lib=rev ;
@@ -381,43 +423,9 @@ We're finished with the data access and git repo activities. Close your SAS prog
 ---
 ---
 
-## Working with Jupyter Notebooks
-
-You're not limited to only run SAS code. Python is the *lingua fraca* for programmers, data scientists, and modelers.
-
-Switch to the **Explorer** pane and navigate to ```SAS-Viya-Workbench-and-VS-Code/Programs``` to open ```python_sample_data_access.ipynb```:
-
-![](/img/franir_2025-03-20-15-08-34.png)
-
-This is an **Interactive Jupyter Notebook** that shows using Python code to access different types of data as we did above with SAS program code.
-
-Run the notebook by selecting **Run All**:
-
-![](/img/franir_2025-03-20-15-12-50.png)
-
-<!-- 
-
-You might see this prompt about network access appear:
-
-![](/img/2026-03-16_15-46-02.png)
-
-Just click **Cancel** if you do.
-
--->
-
-After each code cell has completed running, you should see sample data returned for review:
-
-![](img/franir_2025-03-20-15-26-34.png)
-
-### &#x1F6A9; Status Check
-
-Jupyter notebooks combine code and descriptive text into a flow that is self-documenting and resusable.
-
-Some sites need to share data to work between users who have existing skillsets and workflows. The SAS Extension for VS Code allows you to integrate SAS capabilities with other programming techniques, like Jupyter notebooks.
-
 ## Working with SAS Notebooks
 
-Python (and other languages) programmers have long enjoyed working with Jupyter Notebooks. As shown above, they can be authored with two main types of content:
+Python (and other languages) programmers have long enjoyed working with Jupyter Notebooks. They can be authored with two main types of content:
 
 -   **Code (or Execute) cells**: Where you write and execute live code. The output appears directly below the cell.
 
@@ -430,7 +438,9 @@ In a SAS Notebook, we can mix:
 - Markdown, a lightweight markup language that uses plain text formatting syntaxfor easy conversion to HTML or other formats,
 - SAS code,
 - SQL code,
-- and Python.
+- and Python code.
+
+### Start a new SAS Notebook
 
 Create a new file by selecting the VS Code Menu > **File** > **New File...** and in the Command Palette prompt, select **SAS Notebook**:
 
@@ -458,11 +468,13 @@ You're shown a preview of the rendered output. Those hashtags # are how section 
 
 ![](/img/franir_2025-03-20-09-56-55.png)
 
+### Interactive SAS programming in your SAS Notebook
+
 Add a code cell by clicking on **+ Code** at the top of the notebook:
 
 ![](/img/franir_2025-03-20-09-58-18.png)
 
-Confirm that it is a SAS cell:
+Confirm that it is a **SAS** cell:
 
 ![](/img/franir_2025-03-20-09-59-05.png)
 
@@ -492,7 +504,7 @@ Add the following header text:
 ## Churn
 ```
 
-Validate the Markdown cell and add a new code cell:
+Validate the **Markdown** cell and add a new code cell:
 
 ![](/img/franir_2025-03-20-10-15-09.png)
 
@@ -508,11 +520,14 @@ Run the cell.
 
 ![](/img/franir_2025-03-20-10-18-39.png)
 
-Add a new Markdown cell with the following level-2 header (i.e., with two hashtags ##): "**Build some distribution reports**".
+Add a new Markdown cell:
 
-Validate/submit markdown.
+- Level: **2** (i.e., with two hashtags ##)
+- Title: **Build some distribution reports**
 
-Add a SAS code cell, paste and run the frequency report and plot code:
+Validate/submit the markdown cell using the checkmark ✓ icon.
+
+Add a **SAS** code cell, paste and run the frequency report and plot code:
 
 ```sas
 /* Frequency report */
@@ -539,9 +554,12 @@ Then select **SAS Log Renderer**:
 
 You should see the SAS log now.
 
-Add a new Markdown cell with the following level-1 header (i.e., one hashtag #): "**Join data**".
+Add a new Markdown cell:
 
-Add a SQL code cell (the label is mistakenly marked as '**MS SQL**' when it should actually be '**SAS SQL**').
+- Level: **1** (i.e., with two hashtag #)
+- Title: **Join data**
+
+Add a **SQL** code cell (the label is mistakenly marked as '**MS SQL**' when it should actually be '**SAS SQL**').
 
 ![](/img/franir_2025-03-20-11-06-44.png)
 
@@ -577,7 +595,11 @@ Select the **SAS** icon in the Activity Bar, look in the **LIBRARIES** section t
 
 Finally, let's save the final table as a Parquet data set.
 
-Add a new Markdown cell with the following level-1 header (i.e., one hashtag #): "**Save final table in Parquet format**".
+
+Add a new Markdown cell:
+
+- Level: **1** (i.e., with one hashtag #)
+- Title: **Save final table in Parquet format**
 
 Add a SAS code cell. Paste the following code that adds a computed variable "customerAge" and saves the dataset to a Parquet file named **churn_abt.parquet**:
 
@@ -593,7 +615,87 @@ Run the code, review the log output that's returned, and look for **churn_abt** 
 
 ![](/img/franir_2025-03-20-13-57-51.png)
 
+> *Note: If you don't see **churn_abt** data set in the list, try clicking the refresh &#x21BB; icon to update the list.*
+
 View the table and confirm the new computed column "customerAge" exists (scroll all the way to the right).
+
+### Interactive Python programming in your SAS Notebook
+
+You're not limited to only run SAS code. Python is the *lingua fraca* for many programmers, data scientists, and modelers. Let's do that, too.
+
+In this case, we'll combine Python programming code with [SAS PROC PYTHON callback methods](https://documentation.sas.com/doc/en/proc/latest/n1x71i41z1ewqsn19j6k9jxoi5fa.htm) to bring the two together.
+
+
+Add a new Markdown cell:
+
+- Level: **1** (i.e., with one hashtag #)
+- Title: **Data discovery with Python**
+
+And then add a new **Python** code cell with:
+
+```python
+# Move SAS data set to Python dataframe
+df = SAS.sd2df("work.churn_wip")
+
+print(" ")
+print("\n👀 First look:")
+print(df.head())
+
+print(" ")
+print("\n📊 Shape of the data:")
+print(df.shape)
+
+print(" ")
+print("\n🧠 Quick summary:")
+desc_df = df.describe(include='all')
+print(desc_df)
+
+print(" ")
+print("\n🚨 Missing values:")
+print(df.isna().sum().sort_values(ascending=False))
+
+print(" ")
+print("\n🎲 Random sample:")
+print(df.sample(5))
+
+print(" ")
+print("\nFrequency for all categorical columns:")
+for col in df.select_dtypes(include='object'):
+    print(" ")
+    print(f"\n🔹 {col}")
+    print(df[col].value_counts().head())
+```
+
+SAS runs your Python code in its runtime (using [PROC PYTHON](https://documentation.sas.com/doc/en/proc/latest/p0sj9pq2ryjlphn1ceq7ntpc1ipp.htm)) and returns the results in the SAS log. Scroll through that content to confirm you see the expected output.
+
+Then create another new Python code cell with content:
+
+```python
+# 1. Subset the data
+df_gold = df[df['customerSubscrStat'] == "Gold"].copy()
+
+# 2. Convert all missing values to empty strings (or 0s)
+#    Prevents the 'float has no attribute encode' error
+df_gold = df_gold.fillna("")
+
+# 3. Move data back to WORK library in SAS
+ds = SAS.df2sd(df_gold, "work.gold")
+```
+
+This step subsets the data and uses the `SAS.df2sd` callback method to save the results in the WORK library as a SAS data set.
+
+And finally one more Python code cell - just for fun, let's submit SAS program code from *inside* the Python processing.
+
+```python
+# Run SAS Code from Python
+SAS.submit("proc freq data=work.gold ; tables customerSubscrStat ; run ;")
+```
+
+If all has run well for you, the the output from the FREQ procedure should show a table like:
+
+| customerSubscrStat | Frequency | Percent | Cumulative<br />Frequency | Cumulative<br />Percent | 
+| -- | -- | -- | -- | -- |
+| Gold | 793 | 100.00 | 793 | 100.0 |
 
 ### Save your SAS Notebook
 
@@ -605,7 +707,7 @@ You can select anywhere on the PC, of course, but we have a location in mind. Na
 
 ### &#x1F6A9; Status Check
 
-You have brought together several components of the data science programming lifecycle using VS Code to author and submit SAS programs, create and examine data in different formats, and generated a SAS Notebook as a document that shows it all working together.
+You have brought together several components of the data science programming lifecycle using VS Code to author and submit SAS programs and Python programs. You are able to create and examine data in different formats, and generated a SAS Notebook as a document that shows it all working together.
 
 ### Close open work
 
@@ -723,8 +825,12 @@ Thanks for participating!
 
 There's a lot more you can learn about the [SAS Extension for VS Code](https://developer.sas.com/programming/vs_code_extension). Follow that link to find How-To videos to take you farther as well as information about the SAS Viya Copilot Extension for VS Code.
 
+### SAS Customer Support
+
+Reflecting the SAS Extension for VS Code's increasingly important role in the SAS Ecosystem, SAS Technical Support provides [Standard Support](https://www.sas.com/en_us/services/support-offerings/standard-support.html#). More information about support can also be found [here](https://github.com/sassoftware/vscode-sas-extension/blob/main/SUPPORT.md).
+
 ### SAS Developer Tools
 
-Beyond the extensions for VS Code, the SAS Developers site (<https://developers.sas.com>) provides detailed documentation about SAS programming APIs, too.
-
 ![](/img/2026-03-16_13-19-39.png)
+
+Beyond the extensions for VS Code, the SAS Developers site (<https://developers.sas.com>) provides detailed documentation about SAS programming APIs, too.
