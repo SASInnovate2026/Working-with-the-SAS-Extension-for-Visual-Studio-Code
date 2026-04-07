@@ -199,6 +199,8 @@ Look closer at the **Data** folder we just created (see the **SAS SERVER** secti
 
 ![](img/2026-03-26_14-46-30.png)
 
+> *If you don't see the "Data" folder under the "student" home directory, then mouse-over the **SAS SERVER** section header above and click the refresh &#x21BB; icon to update the list.*
+
 - **Customer churn** is a parquet table that provides metrics about customer activity over the last few months,
 - **Customers** is a SAS data set that describes customers’ attributes, such as their estimated income, homeowner status and birth date,
 - **Reviews** is a JSON file that lists customer reviews on recent purchases,
@@ -556,7 +558,7 @@ You should see the SAS log now.
 
 Add a new Markdown cell:
 
-- Level: **1** (i.e., with two hashtag #)
+- Level: **1** (i.e., with one hashtag #)
 - Title: **Join data**
 
 Add a **SQL** code cell (the label is mistakenly marked as '**MS SQL**' when it should actually be '**SAS SQL**').
