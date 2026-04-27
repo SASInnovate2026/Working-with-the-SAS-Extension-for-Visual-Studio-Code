@@ -115,9 +115,28 @@ Now let's see what it looks like to work with SAS Viya in the VS Code app. Click
 
 ![](/img/2026-03-26_14-02-59.png)
 
-If this is the first time opening the SAS Extension in this session of VS Code, then you should briefly see a "Connecting" panel appear at the bottom right of the window:
+If this is the first time opening the SAS Extension in this session of VS Code, you'll likely see a button to sign in to the SAS Viya backend:
 
-![](/img/2026-03-13_09-55-41.png)
+![](/img/2026-04-27_15-03-54.png)
+
+Click the **Sign In** button. If prompted, click "Allow" for the "extension 'SAS' to sign in using SAS". Next, a new browser window will open with the "student" user's credentials prefilled for you:
+
+![](img/2026-04-27_15-09-05.png)
+
+Click *that* **Sign In** button. Then you're presented with two choices:
+
+![](img/2026-04-27_15-11-01.png)
+
+-   Select the "**SASAdministrators**" checkbox for your user to assume administrative privileges. We don't really need it here, but it's good to know about it.
+-   Click the **Authorize Access** to proceed with the sign on process.
+
+Next you're given a unique one-time code to enter into VS Code to complete signing in:
+
+![](img/2026-04-27_15-13-58.png)
+
+As instructed, copy the code provided and switch back to the VS Code app. At the top of the VS Code window, enter the authorization code in the field provided:
+
+![alt text](img/2026-04-27_15-17-01.png)
 
 Once connected to the SAS Viya backend, you should see three main views into the SAS environment there:
 
@@ -130,6 +149,8 @@ Once connected to the SAS Viya backend, you should see three main views into the
 - **LIBRARIES**: These are the familiar SAS library resources where you can see data that's available to SAS.
 
 Feel free to click around to see what's there.
+
+As a best practice, you can switch back to the web browser where the authorization code was provided and click the **Sign Out** button. That won't affect your connection in VS Code.
 
 ### &#x1F6A9; Status Check
 
