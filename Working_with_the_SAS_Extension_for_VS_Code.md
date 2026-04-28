@@ -857,3 +857,7 @@ Reflecting the SAS Extension for VS Code's increasingly important role in the SA
 ![](/img/2026-03-16_13-19-39.png)
 
 Beyond the extensions for VS Code, the SAS Developers site (<https://developers.sas.com>) provides detailed documentation about SAS programming APIs, too.
+
+### Link to this project in GitHub
+
+![](img/qrcode.png)
